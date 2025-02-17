@@ -45,6 +45,29 @@ blocks:
     coordinate: [200, 12]
     rotation: 0
     state: enabled
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: '1000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    showports: 'False'
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 216.0]
+    rotation: 0
+    state: enabled
 - name: blocks_vector_source_x_0
   id: blocks_vector_source_x
   parameters:
@@ -62,9 +85,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [232, 492.0]
+    coordinate: [200, 492.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_vector_source_x_0_0
   id: blocks_vector_source_x
   parameters:
@@ -111,9 +134,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 232.0]
+    coordinate: [344, 184.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: epy_block_1
   id: epy_block
   parameters:
@@ -128,7 +151,7 @@ blocks:
       \       \n    \n    def work (self , input_items , output_items ):\n       \
       \ x = input_items [0]\n        y0 = output_items [0]\n\n        N = len (x)\n\
       \        diff = np. cumsum (x) - self . acum_anterior\n        self . acum_anterior\
-      \ = diff [N -1]\n        y0 [:] = diff\n        return len (y)\n"
+      \ = diff [N -1]\n        y0 [:] = diff\n        return len (y0)\n"
     affinity: ''
     alias: ''
     comment: ''
@@ -140,9 +163,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [264, 384.0]
+    coordinate: [400, 344.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: epy_block_2
   id: epy_block
   parameters:
@@ -602,10 +625,13 @@ blocks:
     state: enabled
 
 connections:
+- [analog_sig_source_x_0, '0', epy_block_1, '0']
+- [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_vector_source_x_0, '0', epy_block_0, '0']
 - [blocks_vector_source_x_0, '0', qtgui_time_sink_x_0, '1']
 - [blocks_vector_source_x_0_0, '0', epy_block_2, '0']
 - [epy_block_0, '0', qtgui_time_sink_x_0, '0']
+- [epy_block_1, '0', qtgui_time_sink_x_0, '1']
 - [epy_block_2, '0', qtgui_number_sink_0, '0']
 - [epy_block_2, '1', qtgui_number_sink_1, '0']
 - [epy_block_2, '2', qtgui_number_sink_2, '0']
