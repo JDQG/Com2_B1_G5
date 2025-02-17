@@ -57,15 +57,15 @@ blocks:
     minoutbuf: '0'
     offset: '0'
     phase: '0'
-    samp_rate: samp_rate
+    samp_rate: samp_rate/2
     showports: 'False'
     type: float
-    waveform: analog.GR_TRI_WAVE
+    waveform: analog.GR_SIN_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [128, 304.0]
+    coordinate: [112, 224.0]
     rotation: 0
     state: enabled
 - name: blocks_vector_source_x_0
@@ -107,7 +107,7 @@ blocks:
     bus_structure: null
     coordinate: [512, 484.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: epy_block_0
   id: epy_block
   parameters:
@@ -134,7 +134,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 192.0]
+    coordinate: [320, 80.0]
     rotation: 0
     state: disabled
 - name: epy_block_1
@@ -163,9 +163,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 320.0]
+    coordinate: [328, 312.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: epy_block_2
   id: epy_block
   parameters:
@@ -210,7 +210,7 @@ blocks:
     bus_structure: null
     coordinate: [712, 336.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_0
   id: qtgui_number_sink
   parameters:
@@ -273,7 +273,7 @@ blocks:
     bus_structure: null
     coordinate: [1032, 80.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_1
   id: qtgui_number_sink
   parameters:
@@ -336,7 +336,7 @@ blocks:
     bus_structure: null
     coordinate: [1032, 216.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_2
   id: qtgui_number_sink
   parameters:
@@ -399,7 +399,7 @@ blocks:
     bus_structure: null
     coordinate: [1032, 352.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_3
   id: qtgui_number_sink
   parameters:
@@ -462,7 +462,7 @@ blocks:
     bus_structure: null
     coordinate: [1032, 488.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_4
   id: qtgui_number_sink
   parameters:
@@ -525,7 +525,7 @@ blocks:
     bus_structure: null
     coordinate: [1032, 620.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -582,7 +582,7 @@ blocks:
     name: '""'
     nconnections: '2'
     size: '1024'
-    srate: samp_rate
+    srate: samp_rate/2
     stemplot: 'False'
     style1: '1'
     style10: '1'
@@ -620,9 +620,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 328.0]
+    coordinate: [584, 184.0]
     rotation: 0
-    state: enabled
+    state: disabled
 
 connections:
 - [analog_sig_source_x_0, '0', epy_block_1, '0']
