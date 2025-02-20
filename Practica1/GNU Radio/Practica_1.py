@@ -117,7 +117,7 @@ class Practica_1(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.epy_block_1 = epy_block_1.blk()
-        self.analog_sig_source_x_0 = analog.sig_source_f((samp_rate/2), analog.GR_SIN_WAVE, 1000, 10, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_f((samp_rate/2), analog.GR_TRI_WAVE, 1000, 2, 0, 0)
 
 
         ##################################################
