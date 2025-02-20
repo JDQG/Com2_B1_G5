@@ -28,7 +28,7 @@ options:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [16, 4.0]
     rotation: 0
     state: enabled
 
@@ -42,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [200, 12]
+    coordinate: [216, 4.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -60,7 +60,7 @@ blocks:
     samp_rate: samp_rate
     showports: 'False'
     type: float
-    waveform: analog.GR_COS_WAVE
+    waveform: analog.GR_SQR_WAVE
   states:
     bus_sink: false
     bus_source: false
@@ -85,7 +85,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [200, 492.0]
+    coordinate: [48, 532.0]
     rotation: 0
     state: disabled
 - name: blocks_vector_source_x_0_0
@@ -105,7 +105,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [512, 484.0]
+    coordinate: [480, 524.0]
     rotation: 0
     state: disabled
 - name: epy_block_0
@@ -119,9 +119,11 @@ blocks:
       \ ( self, additionFlag = 1.0 ) : \n        gr. sync_block . __init__ (\n   \
       \         self ,\n            name = 'e_Acum', \n            in_sig =[ np. float32\
       \ ],\n            out_sig =[ np. float32 ]\n        )\n        self.additionFlag\
-      \ = additionFlag\n    \n    def work (self , input_items , output_items ):\n\
-      \        x = input_items [0] \n        y0 = output_items [0] \n        \n  \
-      \      y0 [:] = np. cumsum (x)\n        \n        return len (y0)\n"
+      \ = additionFlag\n        self.accumulated_value = 0    \t\n\n    def work (self\
+      \ , input_items , output_items ):\n        x = input_items [0] \n        y0\
+      \ = output_items [0] \n        \n        for i in range(len(x)):\n         \
+      \   self.accumulated_value += x[i]\n            y0[i] = self.accumulated_value\n\
+      \        \n        return len (y0)"
     additionFlag: '1.0'
     affinity: ''
     alias: ''
@@ -134,36 +136,37 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [344, 184.0]
+    coordinate: [272, 400.0]
     rotation: 0
     state: disabled
 - name: epy_block_1
   id: epy_block
   parameters:
-    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
-      \ GRC will instantiate the first class it finds\nto get ports and parameters\
-      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
-      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\n\nclass blk (gr. sync_block ):\n\n    def __init__\
-      \ ( self ) :\n        gr. sync_block . __init__ (\n            self ,\n    \
-      \        name ='e_Diff ',\n            in_sig =[ np. float32 ],\n          \
-      \  out_sig =[ np. float32 ]\n        )\n        self . acum_anterior = 0\n \
-      \       \n    \n    def work (self , input_items , output_items ):\n       \
-      \ x = input_items [0]\n        y0 = output_items [0]\n\n        N = len (x)\n\
-      \        diff = np. cumsum (x) - self . acum_anterior\n        self . acum_anterior\
-      \ = diff [N -1]\n        y0 [:] = diff\n        return len (y0)\n"
+    _source_code: "import numpy as np\nfrom gnuradio import gr\n\nclass blk(gr.sync_block):\n\
+      \    def __init__(self):\n        gr.sync_block.__init__(\n            self,\n\
+      \            name='e_Diff',\n            in_sig=[np.float32],\n            out_sig=[np.float32]\n\
+      \        )\n        # Guarda la \xFAltima muestra de la ejecuci\xF3n anterior\n\
+      \        self.prev_sample = 0.0\n\n    def work(self, input_items, output_items):\n\
+      \        x = input_items[0]\n        y = output_items[0]\n        N = len(x)\n\
+      \        \n        if N == 0:\n            return 0\n        \n        # 1)\
+      \ Diferencia para la primera muestra del bloque actual\n        #    usando\
+      \ la \xFAltima muestra del bloque anterior\n        y[0] = x[0] - self.prev_sample\n\
+      \        \n        # 2) Diferencia entre muestras consecutivas dentro del bloque\n\
+      \        for i in range(1, N):\n            y[i] = x[i] - x[i-1]\n        \n\
+      \        # 3) Actualiza el estado para el siguiente bloque\n        self.prev_sample\
+      \ = x[-1]\n        \n        return N\n\n"
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
-    _io_cache: ('e_Diff ', 'blk', [], [('0', 'float', 1)], [('0', 'float', 1)], '',
+    _io_cache: ('e_Diff', 'blk', [], [('0', 'float', 1)], [('0', 'float', 1)], '',
       [])
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [400, 344.0]
+    coordinate: [328, 160.0]
     rotation: 0
     state: enabled
 - name: epy_block_2
@@ -208,7 +211,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [712, 336.0]
+    coordinate: [704, 368.0]
     rotation: 0
     state: disabled
 - name: qtgui_number_sink_0
@@ -581,7 +584,7 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '2'
-    size: '1024'
+    size: '128'
     srate: samp_rate
     stemplot: 'False'
     style1: '1'
@@ -620,7 +623,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [640, 220.0]
+    coordinate: [488, 300.0]
     rotation: 0
     state: enabled
 

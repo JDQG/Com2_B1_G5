@@ -19,11 +19,14 @@ class blk (gr. sync_block ):
             out_sig =[ np. float32 ]
         )
         self.additionFlag = additionFlag
-    
+        self.accumulated_value = 0    	
+
     def work (self , input_items , output_items ):
         x = input_items [0] 
         y0 = output_items [0] 
         
-        y0 [:] = np. cumsum (x)
+        for i in range(len(x)):
+            self.accumulated_value += x[i]
+            y0[i] = self.accumulated_value
         
         return len (y0)
