@@ -60,14 +60,14 @@ blocks:
     samp_rate: samp_rate
     showports: 'False'
     type: float
-    waveform: analog.GR_SQR_WAVE
+    waveform: analog.GR_TRI_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [32, 216.0]
+    coordinate: [120, 160.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_vector_source_x_0
   id: blocks_vector_source_x
   parameters:
@@ -85,7 +85,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [48, 532.0]
+    coordinate: [24, 540.0]
     rotation: 0
     state: disabled
 - name: blocks_vector_source_x_0_0
@@ -105,9 +105,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [480, 524.0]
+    coordinate: [648, 468.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: epy_block_0
   id: epy_block
   parameters:
@@ -136,7 +136,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [272, 400.0]
+    coordinate: [64, 392.0]
     rotation: 0
     state: disabled
 - name: epy_block_1
@@ -166,9 +166,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 160.0]
+    coordinate: [424, 144.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: epy_block_2
   id: epy_block
   parameters:
@@ -211,9 +211,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 368.0]
+    coordinate: [904, 424.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_0
   id: qtgui_number_sink
   parameters:
@@ -274,9 +274,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 80.0]
+    coordinate: [1248, 120.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_1
   id: qtgui_number_sink
   parameters:
@@ -337,9 +337,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 216.0]
+    coordinate: [1256, 264.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_2
   id: qtgui_number_sink
   parameters:
@@ -400,9 +400,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 352.0]
+    coordinate: [1248, 408.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_3
   id: qtgui_number_sink
   parameters:
@@ -463,9 +463,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 488.0]
+    coordinate: [1256, 544.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_number_sink_4
   id: qtgui_number_sink
   parameters:
@@ -526,9 +526,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 620.0]
+    coordinate: [1248, 688.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -623,9 +623,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [488, 300.0]
+    coordinate: [408, 340.0]
     rotation: 0
-    state: enabled
+    state: disabled
 
 connections:
 - [analog_sig_source_x_0, '0', epy_block_1, '0']
